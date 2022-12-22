@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: IdApp(),
   ));
 }
@@ -11,8 +12,10 @@ class IdApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> options = ["Name", "Date of Birth"];
-    List<String> answers = ["Muhammad Nauman Sheikh","November 10, 2000"];
+    List<String> options = ["Gender","Date of Birth","Address","Occupation"];
+    List<String> answers = ["Male","November 10, 2000","592 G-1, Johar Town","Student"];
+    List<IconData> contactIcons = [Icons.call,Icons.email];
+    List<String> contactInfo = ["0317-4639614","nauman.sh7099@gmail.com"];
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -20,7 +23,7 @@ class IdApp extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               Colors.white,
-              Colors.blue.shade300,
+              Colors.lightBlue.shade100,
             ],
           )
       ),
@@ -30,17 +33,100 @@ class IdApp extends StatelessWidget {
           title: const Text("Owner Id Card"),
           centerTitle: true,
           elevation: 0.0,
-          backgroundColor: Colors.lightBlue[200],
+          backgroundColor: Colors.lightBlue[400],
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 150,
-              color: Colors.blue,
+              height: 170,
+              color: Colors.blue.shade700,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0,20,0,0),
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.asset(
+                            "assets/img_user.jpg",
+                            width: 100,
+                            height: 100,
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        const Text(
+                          "Muhammad Nauman Sheikh",
+                          style: TextStyle(
+                            letterSpacing: 2,
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (int i=0; i<options.length; i++)...[
+                    Text(
+                      options[i],
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17.5,
+                          letterSpacing: 1.5,
+                          color: Colors.grey[600]
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      answers[i],
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22.50,
+                          letterSpacing: 2,
+                          color: Colors.grey[800]
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                  for(int i=0; i<contactInfo.length;i++)...[
+                    Row(
+                      children: [
+                        Icon(
+                            contactIcons[i]
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(contactInfo[i],
+                          style: TextStyle(
+                              fontSize: 20,
+                              letterSpacing: 1.5,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[800]
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ],
               ),
             ),
           ],
