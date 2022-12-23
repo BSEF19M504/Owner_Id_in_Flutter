@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'info.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -12,10 +13,17 @@ class IdApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> options = ["Gender","Date of Birth","Address","Occupation"];
-    List<String> answers = ["Male","November 10, 2000","592 G-1, Johar Town","Student"];
-    List<IconData> contactIcons = [Icons.call,Icons.email];
-    List<String> contactInfo = ["0317-4639614","nauman.sh7099@gmail.com"];
+    List<InfoData> infoDataList = [
+      InfoData("Gender","Male"),
+      InfoData("Date of Birth", "November 10, 2000"),
+      InfoData("Address", "592 G-1, Johar Town"),
+      InfoData("Occupation", "Student")
+    ];
+
+    List<InfoIcon> infoIconList = [
+      InfoIcon(Icons.call, "0317-4639614"),
+      InfoIcon(Icons.email, "nauman.sh7099@gmail.com")
+    ];
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -76,10 +84,10 @@ class IdApp extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  for (int i=0; i<options.length; i++)...[
+                children:[
+                  for (InfoData infoData in infoDataList)...[
                     Text(
-                      options[i],
+                      infoData.option,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17.5,
@@ -91,7 +99,7 @@ class IdApp extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      answers[i],
+                      infoData.answer,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22.50,
@@ -103,16 +111,17 @@ class IdApp extends StatelessWidget {
                       height: 20,
                     ),
                   ],
-                  for(int i=0; i<contactInfo.length;i++)...[
+                  for(InfoIcon infoIcon in infoIconList)...[
                     Row(
                       children: [
                         Icon(
-                            contactIcons[i]
+                            infoIcon.icon
                         ),
                         const SizedBox(
                           width: 10,
                         ),
-                        Text(contactInfo[i],
+                        Text(
+                          infoIcon.text,
                           style: TextStyle(
                               fontSize: 20,
                               letterSpacing: 1.5,
