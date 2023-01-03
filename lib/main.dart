@@ -12,34 +12,7 @@ class IdApp extends StatelessWidget {
   const IdApp({Key? key}) : super(key: key);
 
   Widget infoDataTemplate(InfoData infoData){
-    return Card(
-      margin: const EdgeInsets.fromLTRB(10, 12, 16, 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            infoData.option,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 17.5,
-                letterSpacing: 1.5,
-                color: Colors.grey[600]
-            ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),Text(
-            infoData.answer,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22.50,
-                letterSpacing: 2,
-                color: Colors.grey[800]
-            ),
-          ),
-        ],
-      ),
-    );
+    return InfoDataWidget(infoData: infoData);
   }
   @override
   Widget build(BuildContext context) {
@@ -114,32 +87,6 @@ class IdApp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children:[
                 ...infoDataList.map((info) => infoDataTemplate(info)).toList(),
-                /*for (InfoData infoData in infoDataList)...[
-                  Text(
-                    infoData.option,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17.5,
-                        letterSpacing: 1.5,
-                        color: Colors.grey[600]
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    infoData.answer,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22.50,
-                        letterSpacing: 2,
-                        color: Colors.grey[800]
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],*/
                 const SizedBox(
                   height: 20,
                 ),
@@ -171,6 +118,46 @@ class IdApp extends StatelessWidget {
                   ),
                 ],
               ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class InfoDataWidget extends StatelessWidget {
+  final InfoData infoData;
+  const InfoDataWidget({super.key, required this.infoData});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              infoData.option,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17.5,
+                  letterSpacing: 1.5,
+                  color: Colors.grey[600]
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),Text(
+              infoData.answer,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.50,
+                  letterSpacing: 2,
+                  color: Colors.grey[800]
+              ),
             ),
           ],
         ),
