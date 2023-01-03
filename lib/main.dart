@@ -11,9 +11,6 @@ void main() {
 class IdApp extends StatelessWidget {
   const IdApp({Key? key}) : super(key: key);
 
-  Widget infoDataTemplate(InfoData infoData){
-    return InfoDataWidget(infoData: infoData);
-  }
   @override
   Widget build(BuildContext context) {
     List<InfoData> infoDataList = [
@@ -86,7 +83,7 @@ class IdApp extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children:[
-                ...infoDataList.map((info) => infoDataTemplate(info)).toList(),
+                ...infoDataList.map((info) => InfoDataWidget(infoData: info)).toList(),
                 const SizedBox(
                   height: 20,
                 ),
