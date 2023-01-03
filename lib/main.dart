@@ -11,6 +11,36 @@ void main() {
 class IdApp extends StatelessWidget {
   const IdApp({Key? key}) : super(key: key);
 
+  Widget infoDataTemplate(InfoData infoData){
+    return Card(
+      margin: const EdgeInsets.fromLTRB(10, 12, 16, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            infoData.option,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 17.5,
+                letterSpacing: 1.5,
+                color: Colors.grey[600]
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),Text(
+            infoData.answer,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22.50,
+                letterSpacing: 2,
+                color: Colors.grey[800]
+            ),
+          ),
+        ],
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     List<InfoData> infoDataList = [
@@ -80,39 +110,43 @@ class IdApp extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children:[
-                  for (InfoData infoData in infoDataList)...[
-                    Text(
-                      infoData.option,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17.5,
-                          letterSpacing: 1.5,
-                          color: Colors.grey[600]
-                      ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children:[
+                ...infoDataList.map((info) => infoDataTemplate(info)).toList(),
+                /*for (InfoData infoData in infoDataList)...[
+                  Text(
+                    infoData.option,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17.5,
+                        letterSpacing: 1.5,
+                        color: Colors.grey[600]
                     ),
-                    const SizedBox(
-                      height: 5,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    infoData.answer,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22.50,
+                        letterSpacing: 2,
+                        color: Colors.grey[800]
                     ),
-                    Text(
-                      infoData.answer,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22.50,
-                          letterSpacing: 2,
-                          color: Colors.grey[800]
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
-                  for(InfoIcon infoIcon in infoIconList)...[
-                    Row(
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],*/
+                const SizedBox(
+                  height: 20,
+                ),
+                for(InfoIcon infoIcon in infoIconList)...[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                    child: Row(
                       children: [
                         Icon(
                             infoIcon.icon
@@ -131,12 +165,12 @@ class IdApp extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
-              ),
+              ],
             ),
           ],
         ),
